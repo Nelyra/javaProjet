@@ -3,6 +3,8 @@ import projet.Adresse;
 import projet.dao.AdresseDAO;
 import projet.dao.AdresseDAOImpl;
 
+import java.util.List;
+
 public class GetAdresse {
 
     public static void main(String[] args) {
@@ -16,17 +18,12 @@ public class GetAdresse {
 
                 AdresseDAO adresseDAO = new AdresseDAOImpl();
 
-                Adresse adresse = new Adresse(  "Paris", "Rue de Paris", 1,  75000);
+                List<Adresse> a = adresseDAO.getAllAdresses(em);
 
-                adresseDAO.createAdresse(em, adresse);
-
-                Adresse gotAdresse = adresseDAO.getAdresseById(em, 1);
-
-                System.out.println(gotAdresse);
-
-                //Adresse updateAdresse = new Adresse(  "Paris", "Rue de Phillipe", 1,  75000);
-
-                //adresseDAO.updateAdresse(em, updateAdresse);
+                System.out.println("Liste des adresses :");
+                for (Adresse adresse : a) {
+                    System.out.println(adresse);
+                }
 
                 et.commit();
             } catch (Exception e) {

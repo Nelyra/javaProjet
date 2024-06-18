@@ -3,6 +3,8 @@ package projet.dao;
 import jakarta.persistence.EntityManager;
 import projet.Adresse;
 
+import java.util.List;
+
 public class AdresseDAOImpl implements AdresseDAO {
     @Override
     public void createAdresse(EntityManager em, Adresse a) {
@@ -11,6 +13,9 @@ public class AdresseDAOImpl implements AdresseDAO {
     @Override
     public Adresse getAdresseById(EntityManager em, int idAdresse) {
         return em.find(Adresse.class, idAdresse);
+    }
+    public List<Adresse> getAllAdresses(EntityManager em) {
+        return em.createQuery("SELECT a FROM Adresse a", Adresse.class).getResultList();
     }
     @Override
     public void updateAdresse(EntityManager em, Adresse a) {

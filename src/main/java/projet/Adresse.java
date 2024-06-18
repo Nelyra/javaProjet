@@ -79,5 +79,14 @@ public class Adresse {
         this.codePostal = codePostal;
     }
 
-
+    @Override
+    public String toString() {
+        return "Adresse{" +
+                "id=" + id +
+                ", ville='" + ville + '\'' +
+                ", rue='" + rue + '\'' +
+                ", numero=" + numero +
+                ", codePostal=" + codePostal +
+                '}';
+    }
 }

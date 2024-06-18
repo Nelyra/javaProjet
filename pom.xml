@@ -99,7 +99,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>${javafx.maven.plugin.version}</version>
                 <configuration>
-                    <mainClass>projet.javafx.main</mainClass>
+                    <mainClass>projet.javafx.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
