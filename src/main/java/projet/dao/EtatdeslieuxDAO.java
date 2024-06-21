@@ -6,9 +6,9 @@ import projet.Etatdeslieux;
 import java.util.List;
 
 public interface EtatdeslieuxDAO {
-    public void createEtatdeslieux(EntityManager em, Etatdeslieux a);
-    public Etatdeslieux getEtatdeslieuxById(EntityManager em, int idEtatdeslieux);
-    public List<Etatdeslieux> getAllEtatdeslieux(EntityManager em);
-    public void updateEtatdeslieux(EntityManager em, Etatdeslieux a);
-    public void deleteEtatdeslieux(EntityManager em, int idEtatdeslieux);
+    public void createEtatdeslieux(Etatdeslieux a);
+    public Etatdeslieux getEtatdeslieuxById(int idEtatdeslieux);
+    public List<Etatdeslieux> getAllEtatdeslieux();
+    public void updateEtatdeslieux(Etatdeslieux a);
+    public void deleteEtatdeslieux(int idEtatdeslieux);
 }

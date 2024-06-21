@@ -6,9 +6,9 @@ import projet.Bail;
 import java.util.List;
 
 public interface BailDAO {
-    public void createBail(EntityManager em, Bail a);
-    public Bail getBailById(EntityManager em, int idBail);
-    public List<Bail> getAllBails(EntityManager em);
-    public void updateBail(EntityManager em, Bail a);
-    public void deleteBail(EntityManager em, int idBail);
+    public void createBail(Bail a);
+    public Bail getBailById(int idBail);
+    public List<Bail> getAllBails();
+    public void updateBail(Bail a);
+    public void deleteBail(int idBail);
 }

@@ -6,9 +6,9 @@ import projet.Location;
 import java.util.List;
 
 public interface LocationDAO {
-    public void createLocation(EntityManager em, Location a);
-    public Location getLocationById(EntityManager em, int idLocation);
-    public List<Location> getAllLocations(EntityManager em);
-    public void updateLocation(EntityManager em, Location a);
-    public void deleteLocation(EntityManager em, int idLocation);
+    public void createLocation(Location a);
+    public Location getLocationById(int idLocation);
+    public List<Location> getAllLocations();
+    public void updateLocation(Location a);
+    public void deleteLocation(int idLocation);
 }

@@ -18,7 +18,7 @@ public class GetAdresse {
 
                 AdresseDAO adresseDAO = new AdresseDAOImpl();
 
-                List<Adresse> a = adresseDAO.getAllAdresses(em);
+                List<Adresse> a = adresseDAO.getAllAdresses();
 
                 System.out.println("Liste des adresses :");
                 for (Adresse adresse : a) {
