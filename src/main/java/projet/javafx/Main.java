@@ -6,10 +6,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import projet.Bail;
 import projet.Personne;
@@ -39,6 +38,20 @@ public class Main extends Application {
 
         Label label2 = new Label("Changer de table");
         label2.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 30px; -fx-font-weight: bold;");
+
+        Image image = new Image("file:src/main/java/projet/javafx/KDC.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(200);
+        imageView.setFitWidth(200);
+
+        HBox topHBox = new HBox();
+        topHBox.setPadding(new Insets(10));
+        topHBox.setAlignment(Pos.TOP_RIGHT);
+
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        topHBox.getChildren().addAll(label, spacer, imageView);
 
         ////// BAUX //////
         BailDAOImpl bailDAO = new BailDAOImpl();
@@ -328,9 +341,10 @@ public class Main extends Application {
         tablePane.setPadding(new Insets(100, 0, 100, 200));
 
         BorderPane borderPane = new BorderPane();
-        borderPane.setTop(label);
+        borderPane.setTop(topHBox);
         borderPane.setLeft(tablePane);
         borderPane.setCenter(buttonPane);
+
 
         Scene scene = new Scene(borderPane, 1920, 1000);
         primaryStage.setScene(scene);
