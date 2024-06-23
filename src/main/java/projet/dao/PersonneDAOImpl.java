@@ -85,6 +85,58 @@ public class PersonneDAOImpl implements PersonneDAO {
         }
     }
 
+    @Override
+    public List<Personne> getAllLocataires() {
+        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("poo_baux");
+        final EntityManager em = emf.createEntityManager();
+
+        try {
+            final jakarta.persistence.EntityTransaction et = em.getTransaction();
+            try {
+                et.begin();
+
+                List<Personne> locataires = em.createQuery("SELECT a FROM Personne a WHERE a.type = 1", Personne.class).getResultList();
+
+                et.commit();
+                return locataires;
+            } catch (Exception e) {
+                et.rollback();
+                throw new RuntimeException(e);
+            }
+        } finally {
+            if (em != null && em.isOpen())
+                em.close();
+            if (emf.isOpen())
+                emf.close();
+        }
+    }
+
+    @Override
+    public List<Personne> getAllProprietaires() {
+        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("poo_baux");
+        final EntityManager em = emf.createEntityManager();
+
+        try {
+            final jakarta.persistence.EntityTransaction et = em.getTransaction();
+            try {
+                et.begin();
+
+                List<Personne> proprietaires = em.createQuery("SELECT a FROM Personne a WHERE a.type = 0", Personne.class).getResultList();
+
+                et.commit();
+                return proprietaires;
+            } catch (Exception e) {
+                et.rollback();
+                throw new RuntimeException(e);
+            }
+        } finally {
+            if (em != null && em.isOpen())
+                em.close();
+            if (emf.isOpen())
+                emf.close();
+        }
+    }
+
     public void updatePersonne(Personne a) {
         final EntityManagerFactory emf = Persistence.createEntityManagerFactory("poo_baux");
         final EntityManager em = emf.createEntityManager();

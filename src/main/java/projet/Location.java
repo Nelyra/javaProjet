@@ -8,6 +8,9 @@ import projet.Adresse;
 public class Location {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY
+    )
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -16,6 +19,13 @@ public class Location {
 
     @Column(name = "appartement")
     private Integer appartement;
+
+    public Location() {
+    }
+
+    public Location(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;

@@ -29,7 +29,6 @@ public class Adresse {
     private Integer codePostal;
 
     public Adresse() {
-
     }
 
     public Adresse(String ville, String rue, Integer numero, Integer codePostal) {
@@ -37,6 +36,10 @@ public class Adresse {
         this.rue = rue;
         this.numero = numero;
         this.codePostal = codePostal;
+    }
+
+    public Adresse(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {

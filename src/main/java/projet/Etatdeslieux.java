@@ -1,9 +1,6 @@
 package projet;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import javax.validation.constraints.Size;
 
@@ -12,11 +9,21 @@ import javax.validation.constraints.Size;
 public class Etatdeslieux {
     @Id
     @Column(name = "idEtat", nullable = false)
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY
+    )
     private Integer id;
 
     @Size(max = 250)
     @Column(name = "commentaire", length = 250)
     private String commentaire;
+
+    public Etatdeslieux() {
+    }
+
+    public Etatdeslieux(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;

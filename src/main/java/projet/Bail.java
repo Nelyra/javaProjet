@@ -9,6 +9,9 @@ import javax.validation.constraints.Size;
 public class Bail {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY
+    )
     private Integer id;
 
     @Size(max = 50)
@@ -42,6 +45,24 @@ public class Bail {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEtatSortie")
     private Etatdeslieux idEtatSortie;
+
+    public Bail() {
+    }
+
+    public Bail(Integer id) {
+        this.id = id;
+    }
+
+    public Bail(String dateDebut, String dateFin, Personne idProprio, Personne idLocataire, Personne idAgentImmobilier, Location idLocation, Etatdeslieux idEtatEntree, Etatdeslieux idEtatSortie) {
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.idProprio = idProprio;
+        this.idLocataire = idLocataire;
+        this.idAgentImmobilier = idAgentImmobilier;
+        this.idLocation = idLocation;
+        this.idEtatEntree = idEtatEntree;
+        this.idEtatSortie = idEtatSortie;
+    }
 
     public Integer getId() {
         return id;

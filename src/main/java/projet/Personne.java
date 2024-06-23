@@ -15,6 +15,9 @@ import javax.validation.constraints.Size;
 public class Personne {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY
+    )
     private Integer id;
 
     @Size(max = 20)
@@ -40,6 +43,13 @@ public class Personne {
 
     @Column(name = "numeroSecu")
     private Integer numeroSecu;
+
+    public Personne() {
+    }
+
+    public Personne(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;
