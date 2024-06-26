@@ -38,8 +38,9 @@ public class Personne {
     @Column(name = "type")
     private Integer type;
 
-    @Column(name = "rib")
-    private Integer rib;
+    @Size(max = 50)
+    @Column(name = "rib", length = 50)
+    private String rib;
 
     @Column(name = "numeroSecu")
     private Integer numeroSecu;
@@ -99,11 +100,11 @@ public class Personne {
         this.type = type;
     }
 
-    public Integer getRib() {
+    public String getRib() {
         return rib;
     }
 
-    public void setRib(Integer rib) {
+    public void setRib(String rib) {
         this.rib = rib;
     }
 

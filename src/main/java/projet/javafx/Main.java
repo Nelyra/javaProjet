@@ -2,6 +2,7 @@ package projet.javafx;
 
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -377,6 +378,8 @@ public class Main extends Application {
         TextField dateFinField = new TextField();
 
         Button saveButton = new Button("Enregistrer");
+        saveButton.setDisable(true);
+
         saveButton.setOnAction(event -> {
             Bail newBail = new Bail();
             newBail.setIdProprio(new Personne(Integer.parseInt(idProprioField.getText())));
@@ -401,6 +404,26 @@ public class Main extends Application {
         Button cancelButton = new Button("Annuler");
         cancelButton.setOnAction(event -> createStage.close());
 
+        ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+            saveButton.setDisable(
+                    idProprioField.getText().trim().isEmpty() ||
+                            idLocataireField.getText().trim().isEmpty() ||
+                            idLocationField.getText().trim().isEmpty() ||
+                            idEtatEntreeField.getText().trim().isEmpty() ||
+                            idEtatSortieField.getText().trim().isEmpty() ||
+                            dateDebutField.getText().trim().isEmpty() ||
+                            dateFinField.getText().trim().isEmpty()
+            );
+        };
+
+        idProprioField.textProperty().addListener(textFieldChangeListener);
+        idLocataireField.textProperty().addListener(textFieldChangeListener);
+        idLocationField.textProperty().addListener(textFieldChangeListener);
+        idEtatEntreeField.textProperty().addListener(textFieldChangeListener);
+        idEtatSortieField.textProperty().addListener(textFieldChangeListener);
+        dateDebutField.textProperty().addListener(textFieldChangeListener);
+        dateFinField.textProperty().addListener(textFieldChangeListener);
+
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10));
         vbox.getChildren().addAll(
@@ -419,6 +442,7 @@ public class Main extends Application {
         createStage.setScene(scene);
         createStage.show();
     }
+
 
     private void handleUpdateBail(TableView<Bail> tableView) {
         Bail selectedBail = tableView.getSelectionModel().getSelectedItem();
@@ -460,6 +484,8 @@ public class Main extends Application {
             dateFinField.setText(selectedBail.getDateFin());
 
             Button saveButton = new Button("Enregistrer");
+            saveButton.setDisable(true);
+
             saveButton.setOnAction(event -> {
                 selectedBail.setIdProprio(new Personne(Integer.parseInt(idProprioField.getText())));
                 selectedBail.setIdLocataire(new Personne(Integer.parseInt(idLocataireField.getText())));
@@ -482,6 +508,28 @@ public class Main extends Application {
 
             Button cancelButton = new Button("Annuler");
             cancelButton.setOnAction(event -> updateStage.close());
+
+            ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+                saveButton.setDisable(
+                        idProprioField.getText().trim().isEmpty() ||
+                                idLocataireField.getText().trim().isEmpty() ||
+                                idAgentImmobilierField.getText().trim().isEmpty() ||
+                                idLocationField.getText().trim().isEmpty() ||
+                                idEtatEntreeField.getText().trim().isEmpty() ||
+                                idEtatSortieField.getText().trim().isEmpty() ||
+                                dateDebutField.getText().trim().isEmpty() ||
+                                dateFinField.getText().trim().isEmpty()
+                );
+            };
+
+            idProprioField.textProperty().addListener(textFieldChangeListener);
+            idLocataireField.textProperty().addListener(textFieldChangeListener);
+            idAgentImmobilierField.textProperty().addListener(textFieldChangeListener);
+            idLocationField.textProperty().addListener(textFieldChangeListener);
+            idEtatEntreeField.textProperty().addListener(textFieldChangeListener);
+            idEtatSortieField.textProperty().addListener(textFieldChangeListener);
+            dateDebutField.textProperty().addListener(textFieldChangeListener);
+            dateFinField.textProperty().addListener(textFieldChangeListener);
 
             VBox vbox = new VBox(10);
             vbox.setPadding(new Insets(10));
@@ -568,6 +616,8 @@ public class Main extends Application {
         TextField codePostalField = new TextField();
 
         Button saveButton = new Button("Enregistrer");
+        saveButton.setDisable(true);
+
         saveButton.setOnAction(event -> {
             Adresse newAdresse = new Adresse();
             newAdresse.setVille(villeField.getText());
@@ -587,6 +637,20 @@ public class Main extends Application {
 
         Button cancelButton = new Button("Annuler");
         cancelButton.setOnAction(event -> createStage.close());
+
+        ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+            saveButton.setDisable(
+                    villeField.getText().trim().isEmpty() ||
+                            rueField.getText().trim().isEmpty() ||
+                            numeroField.getText().trim().isEmpty() ||
+                            codePostalField.getText().trim().isEmpty()
+            );
+        };
+
+        villeField.textProperty().addListener(textFieldChangeListener);
+        rueField.textProperty().addListener(textFieldChangeListener);
+        numeroField.textProperty().addListener(textFieldChangeListener);
+        codePostalField.textProperty().addListener(textFieldChangeListener);
 
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10));
@@ -628,6 +692,8 @@ public class Main extends Application {
             codePostalField.setText(selectedAdresse.getCodePostal().toString());
 
             Button saveButton = new Button("Enregistrer");
+            saveButton.setDisable(true);
+
             saveButton.setOnAction(event -> {
                 selectedAdresse.setVille(villeField.getText());
                 selectedAdresse.setRue(rueField.getText());
@@ -646,6 +712,20 @@ public class Main extends Application {
 
             Button cancelButton = new Button("Annuler");
             cancelButton.setOnAction(event -> updateStage.close());
+
+            ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+                saveButton.setDisable(
+                        villeField.getText().trim().isEmpty() ||
+                                rueField.getText().trim().isEmpty() ||
+                                numeroField.getText().trim().isEmpty() ||
+                                codePostalField.getText().trim().isEmpty()
+                );
+            };
+
+            villeField.textProperty().addListener(textFieldChangeListener);
+            rueField.textProperty().addListener(textFieldChangeListener);
+            numeroField.textProperty().addListener(textFieldChangeListener);
+            codePostalField.textProperty().addListener(textFieldChangeListener);
 
             VBox vbox = new VBox(10);
             vbox.setPadding(new Insets(10));
@@ -722,6 +802,8 @@ public class Main extends Application {
         TextField appartementField = new TextField();
 
         Button saveButton = new Button("Enregistrer");
+        saveButton.setDisable(true);
+
         saveButton.setOnAction(event -> {
             Location newLocation = new Location();
             newLocation.setIdAdresse(new Adresse(Integer.parseInt(idAdresseField.getText())));
@@ -739,6 +821,16 @@ public class Main extends Application {
 
         Button cancelButton = new Button("Annuler");
         cancelButton.setOnAction(event -> createStage.close());
+
+        ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+            saveButton.setDisable(
+                    idAdresseField.getText().trim().isEmpty() ||
+                            appartementField.getText().trim().isEmpty()
+            );
+        };
+
+        idAdresseField.textProperty().addListener(textFieldChangeListener);
+        appartementField.textProperty().addListener(textFieldChangeListener);
 
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10));
@@ -770,6 +862,8 @@ public class Main extends Application {
             appartementField.setText(selectedLocation.getAppartement().toString());
 
             Button saveButton = new Button("Enregistrer");
+            saveButton.setDisable(true);
+
             saveButton.setOnAction(event -> {
                 selectedLocation.setIdAdresse(new Adresse(Integer.parseInt(idAdresseField.getText())));
                 selectedLocation.setAppartement(Integer.parseInt(appartementField.getText()));
@@ -786,6 +880,16 @@ public class Main extends Application {
 
             Button cancelButton = new Button("Annuler");
             cancelButton.setOnAction(event -> updateStage.close());
+
+            ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+                saveButton.setDisable(
+                        idAdresseField.getText().trim().isEmpty() ||
+                                appartementField.getText().trim().isEmpty()
+                );
+            };
+
+            idAdresseField.textProperty().addListener(textFieldChangeListener);
+            appartementField.textProperty().addListener(textFieldChangeListener);
 
             VBox vbox = new VBox(10);
             vbox.setPadding(new Insets(10));
@@ -869,6 +973,8 @@ public class Main extends Application {
         TextField ribField = new TextField();
 
         Button saveButton = new Button("Enregistrer");
+        saveButton.setDisable(true);
+
         saveButton.setOnAction(event -> {
             Personne newPersonne = new Personne();
             newPersonne.setNom(nomField.getText());
@@ -876,8 +982,7 @@ public class Main extends Application {
             newPersonne.setMail(mailField.getText());
             newPersonne.setTelephone(Integer.parseInt(telephoneField.getText()));
             newPersonne.setType(0);
-            newPersonne.setRib(Integer.parseInt(ribField.getText()));
-
+            newPersonne.setRib(ribField.getText());
             PersonneDAOImpl personneDAO = new PersonneDAOImpl();
             personneDAO.createPersonne(newPersonne);
 
@@ -890,6 +995,22 @@ public class Main extends Application {
 
         Button cancelButton = new Button("Annuler");
         cancelButton.setOnAction(event -> createStage.close());
+
+        ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+            saveButton.setDisable(
+                    nomField.getText().trim().isEmpty() ||
+                            prenomField.getText().trim().isEmpty() ||
+                            mailField.getText().trim().isEmpty() ||
+                            telephoneField.getText().trim().isEmpty() ||
+                            ribField.getText().trim().isEmpty()
+            );
+        };
+
+        nomField.textProperty().addListener(textFieldChangeListener);
+        prenomField.textProperty().addListener(textFieldChangeListener);
+        mailField.textProperty().addListener(textFieldChangeListener);
+        telephoneField.textProperty().addListener(textFieldChangeListener);
+        ribField.textProperty().addListener(textFieldChangeListener);
 
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10));
@@ -936,13 +1057,15 @@ public class Main extends Application {
             ribField.setText(selectedPersonne.getRib().toString());
 
             Button saveButton = new Button("Enregistrer");
+            saveButton.setDisable(true);
+
             saveButton.setOnAction(event -> {
                 selectedPersonne.setNom(nomField.getText());
                 selectedPersonne.setPrenom(prenomField.getText());
                 selectedPersonne.setMail(mailField.getText());
                 selectedPersonne.setTelephone(Integer.parseInt(telephoneField.getText()));
                 selectedPersonne.setType(0);
-                selectedPersonne.setRib(Integer.parseInt(ribField.getText()));
+                selectedPersonne.setRib(ribField.getText());
 
                 PersonneDAOImpl personneDAO = new PersonneDAOImpl();
                 personneDAO.updatePersonne(selectedPersonne);
@@ -956,6 +1079,22 @@ public class Main extends Application {
 
             Button cancelButton = new Button("Annuler");
             cancelButton.setOnAction(event -> updateStage.close());
+
+            ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+                saveButton.setDisable(
+                        nomField.getText().trim().isEmpty() ||
+                                prenomField.getText().trim().isEmpty() ||
+                                mailField.getText().trim().isEmpty() ||
+                                telephoneField.getText().trim().isEmpty() ||
+                                ribField.getText().trim().isEmpty()
+                );
+            };
+
+            nomField.textProperty().addListener(textFieldChangeListener);
+            prenomField.textProperty().addListener(textFieldChangeListener);
+            mailField.textProperty().addListener(textFieldChangeListener);
+            telephoneField.textProperty().addListener(textFieldChangeListener);
+            ribField.textProperty().addListener(textFieldChangeListener);
 
             VBox vbox = new VBox(10);
             vbox.setPadding(new Insets(10));
@@ -977,7 +1116,7 @@ public class Main extends Application {
 
             Stage errorStage = new Stage();
 
-            Label errorLabel = new Label("Aucun propriétaire sélectionné pour la modification.");
+            Label errorLabel = new Label("Aucun propriétaire sélectionné pour la mise à jour.");
             errorLabel.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 20px; -fx-font-weight: bold;");
 
             Button errorButton = new Button("OK");
@@ -1042,6 +1181,8 @@ public class Main extends Application {
         TextField ribField = new TextField();
 
         Button saveButton = new Button("Enregistrer");
+        saveButton.setDisable(true);
+
         saveButton.setOnAction(event -> {
             Personne newPersonne = new Personne();
             newPersonne.setNom(nomField.getText());
@@ -1049,7 +1190,7 @@ public class Main extends Application {
             newPersonne.setMail(mailField.getText());
             newPersonne.setTelephone(Integer.parseInt(telephoneField.getText()));
             newPersonne.setType(1);
-            newPersonne.setRib(Integer.parseInt(ribField.getText()));
+            newPersonne.setRib(ribField.getText());
 
             PersonneDAOImpl personneDAO = new PersonneDAOImpl();
             personneDAO.createPersonne(newPersonne);
@@ -1063,6 +1204,22 @@ public class Main extends Application {
 
         Button cancelButton = new Button("Annuler");
         cancelButton.setOnAction(event -> createStage.close());
+
+        ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+            saveButton.setDisable(
+                    nomField.getText().trim().isEmpty() ||
+                            prenomField.getText().trim().isEmpty() ||
+                            mailField.getText().trim().isEmpty() ||
+                            telephoneField.getText().trim().isEmpty() ||
+                            ribField.getText().trim().isEmpty()
+            );
+        };
+
+        nomField.textProperty().addListener(textFieldChangeListener);
+        prenomField.textProperty().addListener(textFieldChangeListener);
+        mailField.textProperty().addListener(textFieldChangeListener);
+        telephoneField.textProperty().addListener(textFieldChangeListener);
+        ribField.textProperty().addListener(textFieldChangeListener);
 
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10));
@@ -1109,13 +1266,15 @@ public class Main extends Application {
             ribField.setText(selectedPersonne.getRib().toString());
 
             Button saveButton = new Button("Enregistrer");
+            saveButton.setDisable(true);
+
             saveButton.setOnAction(event -> {
                 selectedPersonne.setNom(nomField.getText());
                 selectedPersonne.setPrenom(prenomField.getText());
                 selectedPersonne.setMail(mailField.getText());
                 selectedPersonne.setTelephone(Integer.parseInt(telephoneField.getText()));
                 selectedPersonne.setType(1);
-                selectedPersonne.setRib(Integer.parseInt(ribField.getText()));
+                selectedPersonne.setRib(ribField.getText());
 
                 PersonneDAOImpl personneDAO = new PersonneDAOImpl();
                 personneDAO.updatePersonne(selectedPersonne);
@@ -1129,6 +1288,22 @@ public class Main extends Application {
 
             Button cancelButton = new Button("Annuler");
             cancelButton.setOnAction(event -> updateStage.close());
+
+            ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+                saveButton.setDisable(
+                        nomField.getText().trim().isEmpty() ||
+                                prenomField.getText().trim().isEmpty() ||
+                                mailField.getText().trim().isEmpty() ||
+                                telephoneField.getText().trim().isEmpty() ||
+                                ribField.getText().trim().isEmpty()
+                );
+            };
+
+            nomField.textProperty().addListener(textFieldChangeListener);
+            prenomField.textProperty().addListener(textFieldChangeListener);
+            mailField.textProperty().addListener(textFieldChangeListener);
+            telephoneField.textProperty().addListener(textFieldChangeListener);
+            ribField.textProperty().addListener(textFieldChangeListener);
 
             VBox vbox = new VBox(10);
             vbox.setPadding(new Insets(10));
@@ -1146,11 +1321,11 @@ public class Main extends Application {
             updateStage.setScene(scene);
             updateStage.show();
         } else {
-            System.out.println("No Locataire selected for deletion.");
+            System.out.println("No Locataire selected for update.");
 
             Stage errorStage = new Stage();
 
-            Label errorLabel = new Label("Aucun locataire sélectionné pour la suppression.");
+            Label errorLabel = new Label("Aucun locataire sélectionné pour la mise à jour.");
             errorLabel.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 20px; -fx-font-weight: bold;");
 
             Button errorButton = new Button("OK");
@@ -1203,6 +1378,8 @@ public class Main extends Application {
         TextField commentaireField = new TextField();
 
         Button saveButton = new Button("Enregistrer");
+        saveButton.setDisable(true);
+
         saveButton.setOnAction(event -> {
             Etatdeslieux newEtatdeslieux = new Etatdeslieux();
             newEtatdeslieux.setCommentaire(commentaireField.getText());
@@ -1219,6 +1396,14 @@ public class Main extends Application {
 
         Button cancelButton = new Button("Annuler");
         cancelButton.setOnAction(event -> createStage.close());
+
+        ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+            saveButton.setDisable(
+                    commentaireField.getText().trim().isEmpty()
+            );
+        };
+
+        commentaireField.textProperty().addListener(textFieldChangeListener);
 
         VBox vbox = new VBox(10);
         vbox.setPadding(new Insets(10));
@@ -1261,6 +1446,14 @@ public class Main extends Application {
             Button cancelButton = new Button("Annuler");
             cancelButton.setOnAction(event -> updateStage.close());
 
+            ChangeListener<String> textFieldChangeListener = (observable, oldValue, newValue) -> {
+                saveButton.setDisable(
+                    commentaireField.getText().trim().isEmpty()
+                );
+            };
+
+            commentaireField.textProperty().addListener(textFieldChangeListener);
+
             VBox vbox = new VBox(10);
             vbox.setPadding(new Insets(10));
             vbox.getChildren().addAll(
@@ -1273,11 +1466,11 @@ public class Main extends Application {
             updateStage.setScene(scene);
             updateStage.show();
         } else {
-            System.out.println("No Etat des lieux selected for deletion.");
+            System.out.println("No Etat des lieux selected for modification.");
 
             Stage errorStage = new Stage();
 
-            Label errorLabel = new Label("Aucun état des lieux sélectionné pour la suppression.");
+            Label errorLabel = new Label("Aucun état des lieux sélectionné pour la mise à jour.");
             errorLabel.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 20px; -fx-font-weight: bold;");
 
             Button errorButton = new Button("OK");
